@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <router-View />
+    <router-view />
   </div>
 </template>
+
+<script>
+
+</script>
 
 <style>
 html, body, div, span, applet, object, iframe,
@@ -48,4 +52,5 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 </style>

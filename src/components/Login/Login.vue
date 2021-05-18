@@ -19,7 +19,7 @@
                 </Input>
             </FormItem>
             <FormItem>
-                <Button type="primary" @click="handleSubmit('formInline')">登录</Button>
+                <Button type="primary" :loading="loading" @click="handleSubmit('formInline')">登录</Button>
                
             </FormItem>
         </Form>
@@ -31,6 +31,7 @@
     export default {
         data () {
             return {
+                loading: false,
                 formInline: {
                     user: '',
                     password: '',
@@ -50,6 +51,7 @@
         },
         methods: {
             handleSubmit(name) {
+                this.loading = true;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
                         if (this.formInline.user !== this.userName) {
@@ -58,11 +60,15 @@
                             this.$Message.error("密码输入错误");
                         } else {
                                 window.localStorage.setItem('userState', '已登录')
-                                this.$Message.success("登录成功");
-                                this.login();
+                                setTimeout(() => {
+                                    this.login();
+                                    this.loading = false;
+                                    this.$Message.success("登录成功");
+                                }, 1000)
                         }
                     } else {
                         this.$Message.error('请填写完整信息');
+                        this.loading = false;
                     }
                 })
             },

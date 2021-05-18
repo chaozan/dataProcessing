@@ -23,7 +23,7 @@
                     <Menu :active-name="$route.name" theme="light" width="auto" :open-names="['1']">
                         <Submenu name="1">
                             <template slot="title">
-                                <Icon type="ios-navigate"></Icon>
+                                <Icon type="logo-apple" style="font-size: 18px;" />
                                 导航1
                             </template>
                             <MenuItem name="index" @click.native="routerGo('home')">首页</MenuItem>
@@ -32,7 +32,7 @@
                         </Submenu>
                         <Submenu name="2">
                             <template slot="title">
-                                <Icon type="ios-keypad"></Icon>
+                                <Icon type="logo-android" style="font-size: 18px;" />
                                 导航2
                             </template>
                             <MenuItem name="html" @click.native="routerGo('html')">html</MenuItem>
@@ -40,7 +40,7 @@
                         </Submenu>
                         <Submenu name="3">
                             <template slot="title">
-                                <Icon type="ios-analytics"></Icon>
+                                <Icon type="logo-angular" style="font-size: 18px;" />
                                 导航3
                             </template>
                             <MenuItem name="json" @click.native="routerGo('json')">导入json</MenuItem>
@@ -87,9 +87,24 @@ import Content from '../Content/Content'
                     name: '404'
                 })
             },
+            success () {
+                this.$Notice.success({
+                    title: '欢迎管理员',
+                    desc: '欢迎来到数据汇总系统'
+                });
+            }
         },
         created() {
-        }
+        },
+        beforeRouteEnter: ((to, from, next) => {
+            if (from.name == 'login') {
+                next(vm => {
+                    vm.success();
+                })
+                return;
+            }
+            next();
+        }),
     }
 </script>
 

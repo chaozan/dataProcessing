@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NProgress from 'nprogress' 
+import 'nprogress/nprogress.css'
 
 const originalPush = VueRouter.prototype.push; 
 
@@ -9,6 +11,7 @@ VueRouter.prototype.push = function push(location) {  
 
 
 Vue.use(VueRouter)
+Vue.use(NProgress)
 
 const routes = [
   {
@@ -47,14 +50,6 @@ const routes = [
             name: 'javaScript',
             meta: {title: 'javaScript'},
             component: () => import ('@/views/javascript/Javascript'),
-            // children: [
-            //   {
-            //     path: 'jsContent',
-            //     name: 'jscontent',
-            //     meta: {title: 'javascript笔记详情'},
-            //     component: () => import ('@/views/javascript/JsContent')
-            //   },
-            // ]
           },
           {
             path: 'RouteVue',
@@ -94,6 +89,7 @@ const router = new VueRouter({
 })
 // let userState = window.localStorage.getItem('userState');
 router.beforeEach((to, from, next) => {
+  NProgress.start();
   if(to.name == 'login') {
     next();
     return;
@@ -102,8 +98,10 @@ router.beforeEach((to, from, next) => {
   if(window.localStorage.getItem('userState') == '未登录') {
     next({name: 'login'}) 
   }
-  
   next()
+})
+router.afterEach(() => {  
+  NProgress.done()
 })
 
 export default router

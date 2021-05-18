@@ -53,9 +53,9 @@ const content = [
         hierarchy: 'ES7'
     },
     {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES1'
+        title: 'JS 中的闭包是什么？',
+        outline: '闭包',
+        hierarchy: '高阶'
     },
     {
         title: 'async/await同步编程异步函数',
