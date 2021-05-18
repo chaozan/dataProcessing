@@ -46,7 +46,15 @@ const routes = [
             path: 'JavaScript',
             name: 'javaScript',
             meta: {title: 'javaScript'},
-            component: () => import ('@/views/javascript/Javascript')
+            component: () => import ('@/views/javascript/Javascript'),
+            // children: [
+            //   {
+            //     path: 'jsContent',
+            //     name: 'jscontent',
+            //     meta: {title: 'javascript笔记详情'},
+            //     component: () => import ('@/views/javascript/JsContent')
+            //   },
+            // ]
           },
           {
             path: 'RouteVue',
