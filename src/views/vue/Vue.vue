@@ -47,9 +47,9 @@ const vueList = [
         hierarchy: '基础1'
     },
     {
-        title: 'vue333',
+        title: '计算属性与侦听器',
         outline: 'vue基础',
-        hierarchy: '基础2'
+        hierarchy: '基础'
     },{
         title: 'vue',
         outline: 'vue基础',

@@ -19,8 +19,8 @@
                 </Input>
             </FormItem>
             <FormItem>
-                <Button type="primary" :loading="loading" @click="handleSubmit('formInline')">登录</Button>
-               
+                <Button type="info" style="float: left; width: 80px;" @click="routerGo('register')">注册</Button>
+                <Button type="primary" :loading="loading" @click="handleSubmit('formInline')" style="float: right; width: 80px;">登录</Button>
             </FormItem>
         </Form>
         </div>
@@ -31,13 +31,16 @@
     export default {
         data () {
             return {
+                storeContent: null,
                 loading: false,
                 formInline: {
                     user: '',
                     password: '',
                 },
-                userName: null, 
-                userPassword: null,
+                loginInp: {
+                    userName: null, 
+                    userPassword: null,
+                },
                 ruleInline: {
                     user: [
                         { required: true, message: '请输入用户名', trigger: 'blur' }
@@ -54,12 +57,25 @@
                 this.loading = true;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        if (this.formInline.user !== this.userName) {
+                        this.$store.state.admin.forEach((item) => {
+                            if(this.formInline.user == item.userName) {
+                                this.loginInp.userName = item.userName
+                                this.homeTitle = item
+                            }
+                        })
+                        this.$store.state.admin.forEach((item) => {
+                            if(this.formInline.password == item.password) {
+                                this.loginInp.userPassword = item.password
+                            }
+                        })
+                        if (this.formInline.user !== this.loginInp.userName) {
                             this.$Message.error("用户名输入错误");
-                        } else if (this.formInline.password !== this.userPassword) {
+                            this.loading = false;
+                        } else if (this.formInline.password !== this.loginInp.userPassword) {
                             this.$Message.error("密码输入错误");
+                            this.loading = false;
                         } else {
-                                window.localStorage.setItem('userState', '已登录')
+                                window.localStorage.setItem('userState', '1')
                                 setTimeout(() => {
                                     this.login();
                                     this.loading = false;
@@ -72,15 +88,23 @@
                     }
                 })
             },
+            routerGo (path) {
+                this.$router.push({
+                    name: path
+                })
+            },
             login () {
                 this.$router.push({
-                    name: 'home'
+                    name: 'home',
+                    query: {
+                        title: this.homeTitle
+                    }
                 })
             }
         },
         created() {
-            this.userName = this.$store.state.userName;
-            this.userPassword = this.$store.state.password;
+            // this.loginInp.userName = this.$store.state.admin.userName;
+            // this.loginInp.userPassword = this.$store.state.admin.password;
             let userState = this.$store.state.userState;
             window.localStorage.setItem('userState', userState)
         }

@@ -7,7 +7,7 @@
                     <MenuItem name="1" style="float: right;">
                         <Dropdown>
                             <a href="javascript:void(0)" style="color: #FFF">
-                                管理员
+                                {{title}}
                                 <Icon type="ios-arrow-down"></Icon>
                             </a>
                             <DropdownMenu slot="list">
@@ -20,7 +20,7 @@
             </Header>
             <Layout>
                 <Sider hide-trigger :style="{background: '#fff'}" style="height: 90vh">
-                    <Menu :active-name="$route.name" theme="light" width="auto" :open-names="['1']">
+                    <Menu :active-name="$route.name" theme="light" width="auto" :open-names="['1']" accordion>
                         <Submenu name="1">
                             <template slot="title">
                                 <Icon type="logo-apple" style="font-size: 18px;" />
@@ -38,7 +38,7 @@
                             <MenuItem name="html" @click.native="routerGo('html')">html</MenuItem>
                             <MenuItem name="css" @click.native="routerGo('css')">css</MenuItem>
                         </Submenu>
-                        <Submenu name="3">
+                        <Submenu name="3" v-if="adminId === '1'">
                             <template slot="title">
                                 <Icon type="logo-angular" style="font-size: 18px;" />
                                 导航3
@@ -68,7 +68,9 @@ import Content from '../Content/Content'
         name: 'home',
         data () {
             return {
-
+                userinfo: null,
+                title: null,
+                adminId: null,
             }
         },
         components: {
@@ -89,16 +91,30 @@ import Content from '../Content/Content'
             },
             success () {
                 this.$Notice.success({
-                    title: '欢迎管理员',
+                    title: this.title,
                     desc: '欢迎来到数据汇总系统'
                 });
+            },
+            localStorageFn () {
+                this.userinfo = this.$route.query.title;
+                window.localStorage.setItem('userInfo', JSON.stringify(this.userinfo));
+                this.title = JSON.parse(window.localStorage.getItem('userInfo')).title;
+                this.adminId = JSON.parse(window.localStorage.getItem('userInfo')).id;
             }
         },
         created() {
+            this.$nextTick(() => {
+                this.title = JSON.parse(window.localStorage.getItem('userInfo')).title;
+                this.adminId = JSON.parse(window.localStorage.getItem('userInfo')).id;
+            })
+            
+        },
+        mounted() {
         },
         beforeRouteEnter: ((to, from, next) => {
             if (from.name == 'login') {
                 next(vm => {
+                    vm.localStorageFn();
                     vm.success();
                 })
                 return;

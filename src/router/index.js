@@ -16,22 +16,30 @@ Vue.use(NProgress)
 const routes = [
   {
     path: '/',
-    redirect: '/Login'
+    redirect: '/Login',
   },
   {
     path: '/404',
     name: '404',
-    component: () => import('@/404.vue')
+    component: () => import('@/404.vue'),
+    meta: {title: '404'}
   },
   {
     path: '/Login',
     name: 'login',
-    component: () => import('@/components/Login/Login')
-  },{
+    component: () => import('@/components/Login/Login'),
+    meta: {title: '登录'}
+  },
+  {
+    path: '/Register',
+    name: 'register',
+    component: () => import('@/components/Login/Register'),
+    meta: {title: '注册'}
+  },
+  {
     path: '/Home',
     name: 'home',
     redirect: '/Home/Content',
-    meta: {title: '首页'},
     component: () => import ('@/components/Home/Home'),
     children: [
       {
@@ -43,7 +51,8 @@ const routes = [
           {
             path: 'Index',
             name: 'index',
-            component: () => import ('@/components/index/Index')
+            component: () => import ('@/components/index/Index'),
+            meta: {title: '首页'},
           },
           {
             path: 'JavaScript',
@@ -90,12 +99,13 @@ const router = new VueRouter({
 // let userState = window.localStorage.getItem('userState');
 router.beforeEach((to, from, next) => {
   NProgress.start();
+  document.getElementById('title').innerHTML = to.meta.title
   if(to.name == 'login') {
     next();
     return;
   }
   
-  if(window.localStorage.getItem('userState') == '未登录') {
+  if(window.localStorage.getItem('userState') == '0' && to.name !== '404' && to.name !== 'register') {
     next({name: 'login'}) 
   }
   next()

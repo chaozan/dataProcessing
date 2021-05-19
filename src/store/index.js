@@ -5,13 +5,23 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userName: 'admin',
-    password: '123456',
-    userState: '未登录'
+    admin: [
+      {
+        userName: 'admin',
+        password: '123456',
+        title: '管理员',
+        iphone: '15127998381',
+        id: '1'
+      }
+    ],
+    userState: '0'
   },
   mutations: {
     alterState (state) {
-      state.userState = '已登录'
+      state.userState = '1'
+    },
+    addAdmin (state, formInline) {
+      state.admin.push(formInline)
     }
   },
   actions: {
