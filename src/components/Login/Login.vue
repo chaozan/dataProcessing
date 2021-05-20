@@ -31,6 +31,7 @@
     export default {
         data () {
             return {
+                homeTitle: null,
                 storeContent: null,
                 loading: false,
                 formInline: {
@@ -47,7 +48,7 @@
                     ],
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' },
-                        { type: 'string', min: 6, message: '密码长度不能少于六位', trigger: 'blur' }
+                        { type: 'string', min: 6, message: '密码长度最小为6位', trigger: 'blur' }
                     ]
                 }
             }
@@ -82,6 +83,29 @@
                                     this.$Message.success("登录成功");
                                 }, 1000)
                         }
+                        // let name = this.formInline.user;
+                        // let password = this.formInline.password
+                        // this.$axios.post(`http://hn216.api.yesapi.cn/?s=App.User.LoginExt&username=${name}&password=${password}&app_key=8AA34109E78D1223493C2B054B68E657`).then(res => {
+                        //     if(res.data.data.err_code == 1) {
+                        //         this.$Message.error(res.data.data.err_msg)
+                        //     } else if (res.data.data.err_code == 2) {
+                        //         this.$Message.error(res.data.data.err_msg)
+                        //     } else {
+                        //         window.localStorage.setItem('userState', '1')
+                        //         window.localStorage.setItem('usertoken', res.data.data.token)
+                        //         window.localStorage.setItem('useruuid', res.data.data.uuid)
+                        //         setTimeout(() => {
+                        //             this.login();
+                        //             this.loading = false;
+                        //             this.$Message.success("登录成功！");
+                        //             console.log(res)
+                        //         }, 1000)
+                        //     }
+                        //     this.loading = false;
+                        // }).catch(err => {
+                        //     this.$Message.error('网络错误，登录失败！');
+                        //     this.loading = false;
+                        // })
                     } else {
                         this.$Message.error('请填写完整信息');
                         this.loading = false;
@@ -103,8 +127,8 @@
             }
         },
         created() {
-            // this.loginInp.userName = this.$store.state.admin.userName;
-            // this.loginInp.userPassword = this.$store.state.admin.password;
+            this.loginInp.userName = this.$store.state.admin.userName;
+            this.loginInp.userPassword = this.$store.state.admin.password;
             let userState = this.$store.state.userState;
             window.localStorage.setItem('userState', userState)
         }

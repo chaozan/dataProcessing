@@ -63,7 +63,7 @@ import {crossTalk} from '@/api/request.js'
                 })
                 this.loading = true;
             }).catch(err => {
-                console.log("请求失败")
+                this.$Message.error('网络错误，请求失败！')
                 this.loading = true;
             })
             
@@ -86,6 +86,5 @@ import {crossTalk} from '@/api/request.js'
         width: 100%;
         height: 40vh;
         position: relative;
-        /* border: 1px solid #eee; */
-    }
+}
 </style>

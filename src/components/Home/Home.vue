@@ -20,7 +20,7 @@
             </Header>
             <Layout>
                 <Sider hide-trigger :style="{background: '#fff'}" style="min-height: 90vh">
-                    <Menu :active-name="$route.name" theme="light" width="auto" :open-names="['1']" accordion>
+                    <Menu :active-name="$route.name" theme="light" width="auto" :open-names="[$route.meta.open]" accordion>
                         <Submenu name="1">
                             <template slot="title">
                                 <Icon type="logo-apple" style="font-size: 18px;" />
@@ -35,8 +35,8 @@
                                 <Icon type="logo-android" style="font-size: 18px;" />
                                 导航2
                             </template>
-                            <MenuItem name="html" @click.native="routerGo('crosstalk')">段子</MenuItem>
-                            <MenuItem name="css" @click.native="routerGo('css')">css</MenuItem>
+                            <MenuItem name="crosstalk" @click.native="routerGo('crosstalk')">搞笑段子</MenuItem>
+                            <MenuItem name="visual" @click.native="routerGo('visual')">视频分类</MenuItem>
                         </Submenu>
                         <Submenu name="3" v-if="adminId === '1'">
                             <template slot="title">
@@ -59,6 +59,7 @@
                 </Layout>
             </Layout>
         </Layout>
+        <Footer class="footer">yaochaohang@163.com出品.项目开源地址https://github.com/chaozan/dataProcessing.git.多多指点</Footer>
     </div>
 </template>
 
@@ -100,7 +101,17 @@ import Content from '../Content/Content'
                 window.localStorage.setItem('userInfo', JSON.stringify(this.userinfo));
                 this.title = JSON.parse(window.localStorage.getItem('userInfo')).title;
                 this.adminId = JSON.parse(window.localStorage.getItem('userInfo')).id;
-            }
+            },
+            // logOut () {
+            //     let uuid = localStorage.getItem('useruuid');
+            //     let token = localStorage.getItem('usertoken')
+            //     console.log(uuid, token, "111")
+            //     this.$axios.post(`http://api.yesapi.cn/?s=App.User.Logout&uuid=${uuid}&token=${token}&app_key=8AA34109E78D1223493C2B054B68E657`).then(res => {
+            //         console.log(res)
+            //     }).catch(err => {
+            //         console.log(err)
+            //     })
+            // }
         },
         created() {
             this.$nextTick(() => {
@@ -150,5 +161,13 @@ import Content from '../Content/Content'
     width: 420px;
     margin: 0 auto;
     margin-right: 20px;
+}
+.footer {
+    background: rgb(73, 73, 72);
+    width: 100%;
+    height:10px;
+    text-align: center;
+    line-height: -120px;
+    color: rgb(158, 150, 150);
 }
 </style>

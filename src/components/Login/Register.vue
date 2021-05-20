@@ -53,7 +53,7 @@
                     ],
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' },
-                        { type: 'string', min: 6, message: '密码最小长度不能低于六位', trigger: 'blur' }
+                        { type: 'string', min: 6, message: '密码长度最小为6位', trigger: 'blur' }
                     ],
                     iphone: [
                         {required: true, message: '请输入手机号码', trigger: 'blur'},
@@ -74,15 +74,25 @@
                             this.routerGo('login')
                             this.loading = false;
                         }, 1000)
-                        // let data = {
-                        //     app_key: '8AA34109E78D1223493C2B054B68E657',
-                        //     username: '123456',
-                        //     password: '123456'
-                        // }
-                        // this.$axios.post('http://localhost:8080/api?s=App.User.RegisterExt', data).then(res => {
+
+                        // let name = this.formInline.userName;
+                        // let password = this.formInline.password;
+                        // this.$axios.post(`http://hn216.api.yesapi.cn/?s=App.User.RegisterExt&username=${name}&password=${password}&app_key=8AA34109E78D1223493C2B054B68E657`).then(res => {
                         //     console.log("请求成功")
+                        //     if(res.data.data.err_code == 1) {
+                        //         this.$Message.warning(res.data.data.err_msg)
+                        //         this.loading = false;
+                        //     } else if(res.data.ret == 400) {
+                        //         this.$Message.warning(res.data.msg)
+                        //         this.loading = false;
+                        //     } else {
+                        //         this.$Message.success('注册成功！')
+                        //         this.loading = false;
+                        //     }
+                        //     console.log(res)
                         // }).catch(err => {
                         //     console.log("请求失败")
+                        //     console.log(err)
                         // })
 
                     } else {
@@ -96,6 +106,13 @@
                     name: name
                 }, 500)
             }
+        },
+        created() {
+            // this.$axios.get('http://URL/Oauth/register').then(res => {
+            //     console.log(res)
+            // }).catch(err => {
+            //     console.log(err)
+            // })
         }
     }
 </script>

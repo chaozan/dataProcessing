@@ -29,8 +29,7 @@ const err = (error) => {
 //  设置请求拦截器
 requests.interceptors.request.use(
     config => {
-        // const token = localStorage.getItem('')
-        // const token = 1
+        // const token = localStorage.getItem('usertoken')
         // if(token) {
         //     config.headers['token'] = token
         // }

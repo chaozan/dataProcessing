@@ -52,31 +52,31 @@ const routes = [
             path: 'Index',
             name: 'index',
             component: () => import ('@/components/index/Index'),
-            meta: {title: '首页'},
+            meta: {title: '首页', open: '1'},
           },
           {
             path: 'JavaScript',
             name: 'javaScript',
-            meta: {title: 'javaScript'},
+            meta: {title: 'javaScript', open: '1'},
             component: () => import ('@/views/javascript/Javascript'),
           },
           {
             path: 'RouteVue',
             name: 'routeVue',
-            meta: {title: 'vue'},
+            meta: {title: 'vue', open: '1'},
             component: () => import ('@/views/vue/Vue')
           },
           {
             path: 'CrossTalk',
             name: 'crosstalk',
-            meta: {title: '段子'},
+            meta: {title: '搞笑段子', open: '2'},
             component: () => import ('@/views/html/Html')
           },
           {
-            path: 'Css',
-            name: 'css',
-            meta: {title: '视频分类'},
-            component: () => import ('@/views/css/Css')
+            path: 'Visual',
+            name: 'visual',
+            meta: {title: '视频分类', open: '2'},
+            component: () => import ('@/views/visual/Visual')
           },
           {
             path: 'Json',
