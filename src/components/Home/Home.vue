@@ -19,7 +19,7 @@
                 </Menu>
             </Header>
             <Layout>
-                <Sider hide-trigger :style="{background: '#fff'}" style="height: 90vh">
+                <Sider hide-trigger :style="{background: '#fff'}" style="min-height: 90vh">
                     <Menu :active-name="$route.name" theme="light" width="auto" :open-names="['1']" accordion>
                         <Submenu name="1">
                             <template slot="title">
@@ -35,7 +35,7 @@
                                 <Icon type="logo-android" style="font-size: 18px;" />
                                 导航2
                             </template>
-                            <MenuItem name="html" @click.native="routerGo('html')">html</MenuItem>
+                            <MenuItem name="html" @click.native="routerGo('crosstalk')">段子</MenuItem>
                             <MenuItem name="css" @click.native="routerGo('css')">css</MenuItem>
                         </Submenu>
                         <Submenu name="3" v-if="adminId === '1'">
@@ -53,7 +53,7 @@
                         <BreadcrumbItem to="/Home">首页</BreadcrumbItem>
                         <BreadcrumbItem v-if="$route.name !== 'index'" :to="this.$route.path">{{this.$route.meta.title}}</BreadcrumbItem>
                     </Breadcrumb>
-                    <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+                    <Content :style="{padding: '24px', minHeight: '75vh', background: '#fff'}">
                         <Content />
                     </Content>
                 </Layout>

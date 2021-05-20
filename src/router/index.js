@@ -67,15 +67,15 @@ const routes = [
             component: () => import ('@/views/vue/Vue')
           },
           {
-            path: 'Html',
-            name: 'html',
-            meta: {title: 'html'},
+            path: 'CrossTalk',
+            name: 'crosstalk',
+            meta: {title: '段子'},
             component: () => import ('@/views/html/Html')
           },
           {
             path: 'Css',
             name: 'css',
-            meta: {title: 'css'},
+            meta: {title: '视频分类'},
             component: () => import ('@/views/css/Css')
           },
           {

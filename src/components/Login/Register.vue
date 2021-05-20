@@ -74,6 +74,17 @@
                             this.routerGo('login')
                             this.loading = false;
                         }, 1000)
+                        // let data = {
+                        //     app_key: '8AA34109E78D1223493C2B054B68E657',
+                        //     username: '123456',
+                        //     password: '123456'
+                        // }
+                        // this.$axios.post('http://localhost:8080/api?s=App.User.RegisterExt', data).then(res => {
+                        //     console.log("请求成功")
+                        // }).catch(err => {
+                        //     console.log("请求失败")
+                        // })
+
                     } else {
                         this.$Message.error('请填写完整信息!');
                         this.loading = false;
