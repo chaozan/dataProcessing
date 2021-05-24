@@ -55,6 +55,12 @@ const routes = [
             meta: {title: '首页', open: '1'},
           },
           {
+            path: 'User',
+            name: 'user',
+            meta: {title: '个人信息'},
+            component: () => import ('@/components/user/User')
+          },
+          {
             path: 'JavaScript',
             name: 'javaScript',
             meta: {title: 'javaScript', open: '1'},
@@ -70,7 +76,13 @@ const routes = [
             path: 'CrossTalk',
             name: 'crosstalk',
             meta: {title: '搞笑段子', open: '2'},
-            component: () => import ('@/views/html/Html')
+            component: () => import ('@/views/crosstalk/CrossTalk')
+          },
+          {
+            path: 'CrossTalkModel',
+            name: 'crosstalkmodel',
+            meta: {title: '搞笑段子详情', open: '2'},
+            component: () => import ('@/views/crosstalk/crossTalkModel/CrossTalkModel')
           },
           {
             path: 'Visual',

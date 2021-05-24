@@ -2,11 +2,11 @@
     <div id="login">
         <div class="loginForm">
             <h2 class="title">欢迎登录</h2>
-            <p class="fontHelp">
+            <!-- <p class="fontHelp">
                 <Poptip title="账号: admin" content="密码: 123456">
                     <Icon type="md-help-circle" class="font" />
                 </Poptip>
-            </p>
+            </p> -->
             <Form ref="formInline" :model="formInline" :rules="ruleInline">
             <FormItem prop="user">
                 <Input type="text" v-model="formInline.user" placeholder="用户名">

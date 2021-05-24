@@ -11,7 +11,7 @@
                                 <Icon type="ios-arrow-down"></Icon>
                             </a>
                             <DropdownMenu slot="list">
-                                <DropdownItem @click.native="error4()">查看信息</DropdownItem>
+                                <DropdownItem @click.native="routerGo('user')">个人信息</DropdownItem>
                                 <DropdownItem @click.native="routerGo('login')">退出登录</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
@@ -51,6 +51,7 @@
                 <Layout :style="{padding: '0 24px 24px'}">
                     <Breadcrumb :style="{margin: '24px 0'}">
                         <BreadcrumbItem to="/Home">首页</BreadcrumbItem>
+                        <BreadcrumbItem>{{vreadcrumbitemTitle}}</BreadcrumbItem>
                         <BreadcrumbItem v-if="$route.name !== 'index'" :to="this.$route.path">{{this.$route.meta.title}}</BreadcrumbItem>
                     </Breadcrumb>
                     <Content :style="{padding: '24px', minHeight: '75vh', background: '#fff'}">
@@ -72,6 +73,7 @@ import Content from '../Content/Content'
                 userinfo: null,
                 title: null,
                 adminId: null,
+                vreadcrumbitemTitle: null
             }
         },
         components: {
@@ -118,7 +120,22 @@ import Content from '../Content/Content'
                 this.title = JSON.parse(window.localStorage.getItem('userInfo')).title;
                 this.adminId = JSON.parse(window.localStorage.getItem('userInfo')).id;
             })
-            
+            if(this.$route.meta.open == '1') {
+                this.vreadcrumbitemTitle = '导航1'
+            } else if(this.$route.meta.open == '2') {
+                this.vreadcrumbitemTitle = '导航2'
+            } else {
+                this.vreadcrumbitemTitle = '导航3'
+            }
+        },
+        updated () {
+            if(this.$route.meta.open == '1') {
+                this.vreadcrumbitemTitle = '导航1'
+            } else if(this.$route.meta.open == '2') {
+                this.vreadcrumbitemTitle = '导航2'
+            } else {
+                this.vreadcrumbitemTitle = '导航3'
+            }
         },
         mounted() {
         },

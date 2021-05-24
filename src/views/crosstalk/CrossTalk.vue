@@ -1,11 +1,16 @@
 <template>
     <div class="crosstalk">
         <h2 class="title">搞笑段子合集</h2>
+        <!-- 搜索 -->
+        <div v-if="loading">
+            <Input type="text" v-model="search" placeholder="请输入内容" style="width: 300px; margin-bottom: 20px;" />
+            <Button type="primary" @click="searchList" style="margin-bottom: 20px;">搜索</Button>
+        </div>
         <div class="demo-spin-container" v-if="!loading">
             <Spin fix size="large"></Spin>
         </div>
         <List item-layout="vertical" v-if="loading">
-        <ListItem v-for="item in data" :key="item.title">
+        <ListItem v-for="item in data" :key="item.title" class="crosstalk-list" @click.native="routerGo('crosstalkmodel', item)">
             <ListItemMeta :avatar="item.data.author.icon" :title="item.data.title" :description="item.data.description + item.data.descriptionEditor" />
             {{ item.content }}
             <!-- <template slot="action">
@@ -19,20 +24,22 @@
         </ListItem>
     </List>
     <Page v-if="loading" 
-    :total="data2.length" 
+    :total="page.total"
     :current="page.index" 
     :page-size="page.size" 
     show-total 
     @on-change="crosstalkPage"
-    style="text-align: center;"/>
+    style="text-align: center; margin-top: 10px;"/>
     </div>
 </template>
 
 <script>
 import {crossTalk} from '@/api/request.js'
+import Vue from "../vue/Vue";
 
     export default {
         name: 'crosstalk',
+        components: {Vue},
         data () {
             return {
                 data: [],
@@ -40,8 +47,11 @@ import {crossTalk} from '@/api/request.js'
                 page: {
                     index: 1,
                     size: 3,
+                    total: null
                 },
-                loading: false
+                loading: false,
+                search: '',
+                searchData: ''
             }
         },
         methods: {
@@ -49,18 +59,43 @@ import {crossTalk} from '@/api/request.js'
                 this.page.index = i;
                 let _start = (i - 1) * this.page.size;
                 let _end = i * this.page.size;
-                this.data = this.data2.slice(_start, _end)
+                if(this.search === '' || this.search === null) {
+                    this.data = this.data2.slice(_start, _end);
+                    this.page.total = this.data2.length;
+                } else {
+                    this.data = this.searchData.slice(_start, _end);
+                    this.page.total = this.searchData.length;
+                }
             },
+            routerGo (name, item) {
+                this.$router.push({
+                    name
+                })
+                localStorage.setItem('crossContent', JSON.stringify(item))
+            },
+            searchList () {
+                if(this.search === '' || this.search === null) {
+                    this.data = this.data2.slice(0, this.page.size)
+                }
+                let list = this.data2.filter(item => {
+                    return item.data.title.indexOf(this.search) !== -1
+                })
+                this.searchData = list;
+                this.page.total = this.searchData.length;
+                this.data = this.searchData.slice(0, this.page.size)
+            }
         },
         created() {
             let data = {
-                id: 127398
+                id: 127399
             }
             crossTalk(data).then(res => {
                 res.result.filter(item => {
                     this.data2.push(item)
-                    this.data = this.data2.slice(0, 3)
                 })
+                this.page.total = this.data2.length;
+                this.data = this.data2.slice(0, this.page.size)
+                console.log(res)
                 this.loading = true;
             }).catch(err => {
                 this.$Message.error('网络错误，请求失败！')
@@ -86,5 +121,12 @@ import {crossTalk} from '@/api/request.js'
         width: 100%;
         height: 40vh;
         position: relative;
+}
+.crosstalk .crosstalk-list {
+    box-shadow: 1px 0px 2px #b3b3b3;
+    cursor: pointer;
+}
+.crosstalk .crosstalk-list:hover {
+    box-shadow: 2px 1px 3px #b3b3b3;
 }
 </style>
