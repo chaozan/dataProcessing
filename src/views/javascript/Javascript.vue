@@ -56,51 +56,6 @@ const content = [
         title: 'JS 中的闭包是什么？',
         outline: '闭包',
         hierarchy: '高阶'
-    },
-    {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES2'
-    },
-    {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES3'
-    },
-    {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES4'
-    },
-    {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES5'
-    },
-    {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES6'
-    },
-    {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES7'
-    },
-    {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES8'
-    },
-    {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES9'
-    },
-    {
-        title: 'async/await同步编程异步函数',
-        outline: 'async/await',
-        hierarchy: 'ES10'
     }
 ]
 

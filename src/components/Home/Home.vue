@@ -38,13 +38,13 @@
                             <MenuItem name="crosstalk" @click.native="routerGo('crosstalk')">搞笑段子</MenuItem>
                             <MenuItem name="visual" @click.native="routerGo('visual')">视频分类</MenuItem>
                         </Submenu>
-                        <Submenu name="3" v-if="adminId === '1'">
+                        <Submenu name="3" v-show="adminId === '1'">
                             <template slot="title">
                                 <Icon type="logo-angular" style="font-size: 18px;" />
                                 导航3
                             </template>
                             <MenuItem name="json" @click.native="routerGo('json')">导入json</MenuItem>
-                            <MenuItem name="3-2">其他</MenuItem>
+                            <MenuItem name="photo" @click.native="routerGo('photo')">相册</MenuItem>
                         </Submenu>
                     </Menu>
                 </Sider>

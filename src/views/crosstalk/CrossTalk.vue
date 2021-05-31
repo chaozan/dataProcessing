@@ -3,7 +3,7 @@
         <h2 class="title">搞笑段子合集</h2>
         <!-- 搜索 -->
         <div v-if="loading">
-                <Input type="text" v-model="search" placeholder="请输入内容" style="width: 300px; margin-bottom: 20px;" />
+            <Input type="text" v-model="search" placeholder="请输入内容" style="width: 300px; margin-bottom: 20px;" />
             <Button type="primary" @click="searchList" style="margin-bottom: 20px;">搜索</Button>
         </div>
         <div class="demo-spin-container" v-if="!loading">
@@ -25,9 +25,9 @@
     </List>
     <Page v-if="loading" 
     :total="page.total"
-    :current="page.index" 
-    :page-size="page.size" 
-    show-total 
+    :current="page.index"
+    :page-size="page.size"
+    show-total
     @on-change="crosstalkPage"
     style="text-align: center; margin-top: 10px;"/>
     </div>
@@ -87,7 +87,7 @@ import Vue from "../vue/Vue";
         },
         created() {
             let data = {
-                id: 127399
+                id: 127397
             }
             crossTalk(data).then(res => {
                 res.result.filter(item => {

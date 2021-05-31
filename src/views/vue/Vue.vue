@@ -51,26 +51,17 @@ const vueList = [
         outline: 'vue基础',
         hierarchy: '基础'
     },{
-        title: 'vue',
-        outline: 'vue基础',
-        hierarchy: '基础3'
-    },
-    {
-        title: 'vue',
-        outline: 'vue基础',
-        hierarchy: '基础4'
+        title: '路由守卫',
+        outline: 'vue路由中路由守卫非常重要',
+        hierarchy: '进阶'
     },{
-        title: 'vue',
+        title: '路由容易忘的知识点',
         outline: 'vue基础',
-        hierarchy: '基础5'
+        hierarchy: 'vue-router'
     },{
-        title: 'vue',
-        outline: 'vue基础',
-        hierarchy: '基础6'
-    },{
-        title: 'vue',
-        outline: 'vue基础',
-        hierarchy: '基础7'
+        title: 'VUE的生命周期',
+        outline: 'VUE的生命周期钩子函数：',
+        hierarchy: '高阶'
     }
     
 ]

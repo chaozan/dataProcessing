@@ -93,8 +93,14 @@ const routes = [
           {
             path: 'Json',
             name: 'json',
-            meta: {title: 'json'},
+            meta: {title: '生成json对象', open: '3'},
             component: () => import ('@/views/json/Json')
+          },
+          {
+            path: 'Photo',
+            name: 'photo',
+            meta: {title: '相册', open: '3'},
+            component: () => import ('@/views/photo/Photo')
           }
         ]
       }
