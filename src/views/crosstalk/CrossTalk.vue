@@ -47,7 +47,7 @@ import Vue from "../vue/Vue";
                 page: {
                     index: 1,
                     size: 3,
-                    total: null
+                    total: 0
                 },
                 loading: false,
                 search: '',
@@ -89,16 +89,17 @@ import Vue from "../vue/Vue";
             let data = {
                 id: 127397
             }
+            //  在这里使用
             crossTalk(data).then(res => {
                 res.result.filter(item => {
                     this.data2.push(item)
                 })
                 this.page.total = this.data2.length;
                 this.data = this.data2.slice(0, this.page.size)
-                console.log(res)
                 this.loading = true;
             }).catch(err => {
                 this.$Message.error('网络错误，请求失败！')
+                console.log(err)
                 this.loading = true;
             })
             
