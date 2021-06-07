@@ -89,7 +89,6 @@ import Vue from "../vue/Vue";
             let data = {
                 id: 127397
             }
-            //  在这里使用
             crossTalk(data).then(res => {
                 res.result.filter(item => {
                     this.data2.push(item)

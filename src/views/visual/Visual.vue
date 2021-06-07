@@ -9,7 +9,7 @@
         </Col>
         </Row>
         <div class="box" v-if="loading">
-            <Card style="width:320px; margin: 30px;" v-for="item in data" :key="item.data.id" @click.native="video(item.data.header.title, item.data.content.data.playUrl)">
+            <Card style="width:300px; margin: 20px;" v-for="item in data" :key="item.data.id" @click.native="video(item.data.header.title, item.data.content.data.playUrl)">
                 <div style="text-align:center">
                     <img :src="item.data.content.data.cover.detail" class="iconimg">
                     <h3 class="icon">{{item.data.header.title}}</h3>
@@ -86,10 +86,11 @@ import VisualModel from './model/VisualModel'
     text-align: center;
 }
 .visual .box {
-    width: 98%;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    padding: 20px;
+    padding: 10px;
     margin: 0 auto;
 }
 .visual .iconimg {

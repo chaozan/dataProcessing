@@ -5,12 +5,14 @@ import 'nprogress/nprogress.css'
 
 const originalPush = VueRouter.prototype.push; 
 
+// 解决路由重复点击
 VueRouter.prototype.push = function push(location) {  
  return originalPush.call(this, location).catch(err => err)
 }
 
-
+// 注册路由
 Vue.use(VueRouter)
+// 注册进度条
 Vue.use(NProgress)
 
 const routes = [
@@ -93,8 +95,14 @@ const routes = [
           {
             path: 'Json',
             name: 'json',
-            meta: {title: 'json'},
+            meta: {title: 'json', open: '3'},
             component: () => import ('@/views/json/Json')
+          },
+          {
+            path: 'Photo',
+            name: 'photo',
+            meta:{title: '相册', open: '3'},
+            component: () => import ('@/views/photo/Photo')
           }
         ]
       }
